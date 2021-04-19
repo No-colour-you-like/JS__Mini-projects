@@ -1,0 +1,125 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  margin: 0 auto;
+}
+
+input, button, textarea {
+  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  font-family: 'Montserrat', sans-serif;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}
+
+a, a:visited, a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  width: 100%;
+}
+
+.form-validator {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.validator {
+  width: 400px;
+  padding: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.validator__title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.validator__part {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.validator__part:nth-of-type(4) {
+  margin-bottom: 30px;
+}
+
+.validator__name {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.validator__input {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 7px;
+  margin-bottom: 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.validator__btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border: none;
+  background-color: #407cff;
+  color: #fff;
+  transition: 0.5s;
+}
+
+.validator__btn:hover {
+  box-shadow: 0 0 10px #407cff;
+}
+
+.validator__status {
+  visibility: hidden;
+}
+
+.validator-error-status input {
+  border-color: #ff3434;
+}
+
+.validator-error-status p {
+  visibility: visible;
+  color: #ff3434;
+}
+
+.validator-success-status input {
+  border-color: #00990d;
+}
+
+.validator-success-status p {
+  visibility: visible;
+  color: #00990d;
+}

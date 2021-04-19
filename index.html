@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-projects</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <main class="content">
+    <section class="form-validator">
+      <form id="form" class="validator">
+        <h1 class="validator__title">Регистрация</h1>
+        <div class="validator__part">
+          <label for="form-username" class="validator__name">Имя</label>
+          <input type="text" id="input-username" class="validator__input"  placeholder="Введите имя" >
+          <p class="validator__status">Ошибка</p>
+        </div>
+        <div class="validator__part">
+          <label for="form-email" class="validator__name">Email</label>
+          <input type="text" id="input-email"  class="validator__input" placeholder="Введите ваш Email" >
+          <p class="validator__status">Ошибка</p>
+        </div>
+        <div class="validator__part">
+          <label for="form-password" class="validator__name">Пароль</label>
+          <input type="password" id="input-password" class="validator__input" placeholder="Введите пароль" >
+          <p class="validator__status">Ошибка</p>
+        </div>
+        <div class="validator__part">
+          <label for="form-confirm" class="validator__name" placeholder="Подтвердите пароль">Подтвердите пароль</label>
+          <input type="password" id="input-confirm"  class="validator__input" placeholder="Введите пароль" >
+          <p class="validator__status">Ошибка</p>
+        </div>
+        <button id="validator-submit" type="submit" class="validator__btn">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
