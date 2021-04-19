@@ -80,7 +80,6 @@ submitBtn.addEventListener('click', (e) => {
 
   } 
 
-  
   checkValue(username, 10, 4, 'Введите имя');
   checkValue(password, 15, 7, 'Введите пароль');
   checkValue(confirm, 15, 7, 'Введите пароль');
@@ -97,24 +96,22 @@ const seats = document.querySelectorAll('.movie__seats .seat'),
  movieSelect = document.querySelector('#movie-select'),
  movie = document.querySelector('#movie');
 
-let moviePriceValue = +movie.value;
+let moviePriceValue = +movieSelect.value;
 
-// Update counter width cchange movie
-const updateChoseCount = () => {
+// Reset values
+const resetValues = () => {
   seats.forEach(seat => {
     seat.classList.remove('seat-chose')
   })
-  moviePrice.textContent = 0
   movieValue.textContent = 0
-}
+  moviePrice.textContent = 0
+};
 
 // Change movie in select 
 movieSelect.addEventListener('change', (e) => {
-  setMovieData(e.target.chosenSeatsIndex, e.target.value)
   moviePriceValue = +e.target.value;
-  updateChoseCount()
+  resetValues()
 });
-
 
 // Change movie value and save data seat in local storage 
 const changeValue = () => {
@@ -122,32 +119,15 @@ const changeValue = () => {
 
   movieValue.textContent = chosenSeats.length
   moviePrice.textContent = chosenSeats.length * moviePriceValue
-
-
-  // Find index of chosen seats from all seats
-  const chosenSeatsIndex = [...chosenSeats].map((chosenSeat) => {
-    return [...seats].indexOf(chosenSeat)
-  })
-
-  // Save data in local storage
-  localStorage.setItem('chosenSeats', JSON.stringify(chosenSeatsIndex))
 }
 
-// Save movie index and price in local storage 
-const saveMovieData = (movieIndex, moviePrice) => {
-  localStorage.setItem('chosenSeatsIndex', movieIndex)
-  localStorage.setItem('chosenSeatsPrice', moviePrice)
-}
-
-
+// Click on seat
 seats.forEach(seat => {
-  
   if (!seat.classList.contains('seat-occupy')) {
     seat.addEventListener('click', () => {
       seat.classList.toggle('seat-chose')
       changeValue()
     })
   }
-
 })
 
