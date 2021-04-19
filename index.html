@@ -40,6 +40,123 @@
         <button id="validator-submit" type="submit" class="validator__btn">Отправить</button>
       </form>
     </section>
+    <section class="movie-seats">
+      <div class="movie">
+        <div class="movie__select">
+          <p class="movie__chose-name">Выберите фильм:</p>
+          <select name="movie-select" id="movie-select" class="movie-select">
+            <option id="movie" value="400" class="movie__name">Бегущий по лезвию (400р)</option>
+            <option value="500" class="movie__name">Криминальное чтиво (500 р)</option>
+            <option value="450" class="movie__name">Крестный отец (450р)</option>
+            <option value="600" class="movie__name">Интерстеллар (600 р)</option>
+          </select>
+        </div>
+        <div class="movie__example">
+          <div class="seat-example">
+            <div class="seat"></div>
+            <p class="seat-example__name">Свободно</p>
+          </div>
+          <div class="seat-example">
+            <div class="seat seat-chose"></div>
+            <p class="seat-example__name">Выбрано</p>
+          </div>
+          <div class="seat-example">
+            <div class="seat seat-occupy"></div>
+            <p class="seat-example__name">Занято</p>
+          </div>
+        </div>
+        <div class="movie__screen-container">
+          <div class="movie__screen"></div>
+        </div>
+        <div class="movie__seats">
+          <div class="movie__seats-rows">
+            <div class="movie__seats-row">
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat seat-occupy"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+              <div class="seat seat-occupy"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+            <div class="movie__seats-row">
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+              <div class="seat"></div>
+            </div>
+          </div>
+          <div class="movie__seats-back">
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+            <div class="seat"></div>
+          </div>
+        </div>
+        <p class="movie__info">
+          Вы выбрали
+          <span class="movie__info-value">0</span>
+          мест на сумму 
+          <span class="movie__info-price">0</span>
+          <span class="movie__info-rub">рублей</span>
+        </p>
+      </div>
+    </section>
   </main>
 
   <script src="js/script.js"></script>

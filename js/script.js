@@ -1,4 +1,4 @@
-// Validation form 
+// ==============Validation form=============
 
 const form = document.querySelector('#form'),
   username = document.querySelector('#input-username'),
@@ -88,3 +88,66 @@ submitBtn.addEventListener('click', (e) => {
   checkPasswords(password, confirm);
 
 });
+
+// ============== Movie seats ====================
+
+const seats = document.querySelectorAll('.movie__seats .seat'),
+ movieValue = document.querySelector('.movie__info-value'),
+ moviePrice = document.querySelector('.movie__info-price'),
+ movieSelect = document.querySelector('#movie-select'),
+ movie = document.querySelector('#movie');
+
+let moviePriceValue = +movie.value;
+
+// Update counter width cchange movie
+const updateChoseCount = () => {
+  seats.forEach(seat => {
+    seat.classList.remove('seat-chose')
+  })
+  moviePrice.textContent = 0
+  movieValue.textContent = 0
+}
+
+// Change movie in select 
+movieSelect.addEventListener('change', (e) => {
+  setMovieData(e.target.chosenSeatsIndex, e.target.value)
+  moviePriceValue = +e.target.value;
+  updateChoseCount()
+});
+
+
+// Change movie value and save data seat in local storage 
+const changeValue = () => {
+  const chosenSeats = document.querySelectorAll('.movie__seats .seat-chose');
+
+  movieValue.textContent = chosenSeats.length
+  moviePrice.textContent = chosenSeats.length * moviePriceValue
+
+
+  // Find index of chosen seats from all seats
+  const chosenSeatsIndex = [...chosenSeats].map((chosenSeat) => {
+    return [...seats].indexOf(chosenSeat)
+  })
+
+  // Save data in local storage
+  localStorage.setItem('chosenSeats', JSON.stringify(chosenSeatsIndex))
+}
+
+// Save movie index and price in local storage 
+const saveMovieData = (movieIndex, moviePrice) => {
+  localStorage.setItem('chosenSeatsIndex', movieIndex)
+  localStorage.setItem('chosenSeatsPrice', moviePrice)
+}
+
+
+seats.forEach(seat => {
+  
+  if (!seat.classList.contains('seat-occupy')) {
+    seat.addEventListener('click', () => {
+      seat.classList.toggle('seat-chose')
+      changeValue()
+    })
+  }
+
+})
+

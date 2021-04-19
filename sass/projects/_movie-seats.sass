@@ -1,0 +1,96 @@
+.movie-seats 
+  background-color: #121c2b
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+
+.seat 
+  width: 18px 
+  height: 15px
+  margin: 5px 
+  background-color: #3a3a3a
+  border-top-left-radius: 10px 
+  border-top-right-radius: 10px
+  box-shadow: 0 0 5px #3a3a3a
+  cursor: pointer
+  transition: 0.3s
+  &:hover 
+    transform: scale(1.2)
+  &-chose
+    background-color: #00a2b8
+    box-shadow: 0 0 5px #00a2b8
+  &-occupy 
+    background-color: #ffffff
+    box-shadow: 0 0 5px #ffffff
+    cursor: auto
+    &:hover 
+      transform: scale(1)
+
+.movie 
+  display: flex
+  flex-direction: column  
+  align-items: center
+  color: #fff
+  &__select   
+    display: flex
+    align-items: center
+    margin-bottom: 40px
+  &__chose-name 
+    margin-right: 20px 
+  &-select
+    padding: 5px
+    border: none
+    border-radius: 4px
+  &__example 
+    display: flex
+    justify-content: center
+    padding: 10px 20px 
+    background-color: #18203a
+    border-radius: 3px
+    margin-bottom: 40px
+    .seat 
+      cursor: auto
+      &:hover 
+        transform: scale(1)
+  &__screen 
+    width: 100% 
+    height: 100px
+    background-color: #fff
+    box-shadow: 0 0 20px #fff
+    transform: rotateX(-45deg)
+    &-container
+      width: 100% 
+      height: 100px
+      margin-bottom: 40px
+      perspective: 600px
+  &__seats 
+    margin-bottom: 50px
+    &-rows
+      display: flex
+      margin-bottom: 10px
+    &-row
+      &:nth-of-type(2)
+        margin-right: 28px
+      &:nth-of-type(7) 
+        margin-left: 28px
+    &-back 
+      display: flex
+  &__info
+    &-value, &-price
+      font-size: 18px
+      font-weight: 700
+      color: #00a2b8
+
+.seat-example 
+  display: flex
+  align-items: center
+  margin-right: 20px
+  &:last-child
+    margin-right: 0
+  &__name 
+    margin-left: 10px
+
+
+    
+
