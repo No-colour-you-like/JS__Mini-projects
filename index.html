@@ -157,6 +157,61 @@
         </p>
       </div>
     </section>
+    <section class="currency-calculator">
+      <div class="currency">
+        <div class="currency__part">
+          <div class="currency__top-select">
+            <div class="currency__image">
+              <img class="currency__img" src="img/currency/russia.png" alt="currency-img">
+            </div>
+            <select name="select-one" id="select-one" class="currency__select">
+              <option value="RUB" selected>RUB - Российский рубль</option>
+              <option value="USD">USD - Доллар США</option>
+              <option value="AUD">AUD - Австралийский доллар</option>
+              <option value="CHF">CHF - Франк</option>
+              <option value="EUR">EUR	- Евро</option>
+              <option value="GBP">GBP	- Фунт стерлингов</option>
+            </select>
+          </div>
+          <div class="currency__info">
+            1 
+            <span class="currency__small-name-one">0</span>
+            - 
+            <span id="small-currency-one"  class="currency__small-value">0</span>
+            <span class="currency__small-name-two">0</span>
+          </div>
+          <input id="input-one" type="number" class="currency__input">
+        </div>
+
+        <div class="calculate__button">
+          <button id="calculate-btn" class="calculate__btn"></button>
+        </div>
+
+        <div class="currency__part">
+          <div class="currency__top-select">
+            <div class="currency__image">
+              <img class="currency__img" src="img/currency/usd.png" alt="currency-img">
+            </div>
+            <select name="select-two" id="select-two" class="currency__select">
+              <option value="RUB">RUB - Российский рубль</option>
+              <option value="USD" selected>USD - Доллар США</option>
+              <option value="AUD">AUD - Австралийский доллар</option>
+              <option value="CHF">CHF - Франк</option>
+              <option value="EUR">EUR	- Евро</option>
+              <option value="GBP">GBP	- Фунт стерлингов</option>
+            </select>
+          </div>
+          <div class="currency__info">
+            1 
+            <span class="currency__small-name-two">0</span>
+            - 
+            <span id="small-currency-two" class="currency__small-value">0</span>
+            <span class="currency__small-name-one"></span>
+          </div>
+          <input id="input-two" type="number" class="currency__input">
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="js/script.js"></script>

@@ -88,7 +88,7 @@ submitBtn.addEventListener('click', (e) => {
 
 });
 
-// ============== Movie seats ====================
+// ============== Movie seats ==================== 
 
 const seats = document.querySelectorAll('.movie__seats .seat'),
  movieValue = document.querySelector('.movie__info-value'),
@@ -131,3 +131,94 @@ seats.forEach(seat => {
   }
 })
 
+// ================== Currency calculator ======================
+
+const currencySelectOne = document.querySelector('#select-one'),
+  currencySelectTwo = document.querySelector('#select-two'),
+  currencyInputOne = document.querySelector('#input-one'),
+  currencyInputTwo = document.querySelector('#input-two'),
+  changeInputsBtn = document.querySelector('#calculate-btn'),
+  smallCurrencyNameOne = document.querySelectorAll('.currency__small-name-one'),
+  smallCurrencyNameTwo = document.querySelectorAll('.currency__small-name-two'),
+  currencyValueSingleOne = document.querySelector('#small-currency-one'),
+  currencyValueSingleTwo = document.querySelector('#small-currency-two'),
+  currencyInfo = document.querySelectorAll('.currency__info'),
+  currencyImg = document.querySelectorAll('.currency__img');
+
+
+const changeCurrency = () => {
+
+  const currencyNameOne = currencySelectOne.value;
+  const currencyNameTwo = currencySelectTwo.value;
+
+  changeCurrencyImg(currencyNameOne, currencyImg[0])
+  changeCurrencyImg(currencyNameTwo, currencyImg[1])
+
+  currencyInfo.forEach(info => {
+    info.classList.add('visibility-visible')
+  })
+
+  smallCurrencyNameOne.forEach(name => {
+    name.textContent = currencyNameOne;
+  })
+
+  smallCurrencyNameTwo.forEach(name => {
+    name.textContent = currencyNameTwo;
+  })
+
+  fetch(`https://api.exchangerate-api.com/v4/latest/${currencyNameOne}`)
+    .then(res => res.json())
+    .then(data => {
+      const rate = data.rates[currencyNameTwo]
+      currencyValueSingleOne.textContent = data.rates[currencyNameTwo]
+      currencyInputTwo.value = (currencyInputOne.value * rate).toFixed(1)
+    })
+
+    fetch(`https://api.exchangerate-api.com/v4/latest/${currencyNameTwo}`)
+    .then(res => res.json())
+    .then(data => {
+      currencyValueSingleTwo.textContent = data.rates[currencyNameOne]
+    })
+};
+
+// Change currency image 
+changeCurrencyImg = (currencyName, img) => {
+
+  function imgSrc(src) {
+    return img.setAttribute('src', `img/currency/${src}`)
+  }
+  
+  switch (currencyName) {
+    case 'USD':
+      imgSrc('usd.png')
+      break
+    case 'EUR':
+      imgSrc('euro.png')
+      break
+    case 'RUB':
+      imgSrc('russia.png')
+      break
+    case 'AUD':
+      imgSrc('australia.png')
+      break
+    case 'CHF':
+      imgSrc('switzerland.png')
+      break
+    case 'GBP':
+      imgSrc('united-kingdom.png')
+      break
+  }
+}
+
+// Change inputs 
+changeInputsBtn.addEventListener('click', () => {
+  const selectValueOne = currencySelectOne.value
+  currencySelectOne.value = currencySelectTwo.value
+  currencySelectTwo.value = selectValueOne
+  changeCurrency()
+})
+
+currencySelectOne.addEventListener('change', changeCurrency)
+currencySelectTwo.addEventListener('change', changeCurrency)
+currencyInputOne.addEventListener('input', changeCurrency)
+currencyInputTwo.addEventListener('input', changeCurrency)
