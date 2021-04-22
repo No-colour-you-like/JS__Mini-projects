@@ -18,7 +18,7 @@ function checkEmail(input) {
     inputError(input)
     changeStatusInfo(input, 'Email не верен')
   }
-} 
+}
 
 
 // Success status input
@@ -78,7 +78,7 @@ submitBtn.addEventListener('click', (e) => {
       changeStatusInfo(input, 'Подтверждено')
     }
 
-  } 
+  }
 
   checkValue(username, 10, 4, 'Введите имя');
   checkValue(password, 15, 7, 'Введите пароль');
@@ -91,10 +91,10 @@ submitBtn.addEventListener('click', (e) => {
 // ============== Movie seats ==================== 
 
 const seats = document.querySelectorAll('.movie__seats .seat'),
- movieValue = document.querySelector('.movie__info-value'),
- moviePrice = document.querySelector('.movie__info-price'),
- movieSelect = document.querySelector('#movie-select'),
- movie = document.querySelector('#movie');
+  movieValue = document.querySelector('.movie__info-value'),
+  moviePrice = document.querySelector('.movie__info-price'),
+  movieSelect = document.querySelector('#movie-select'),
+  movie = document.querySelector('#movie');
 
 let moviePriceValue = +movieSelect.value;
 
@@ -174,7 +174,7 @@ const changeCurrency = () => {
       currencyInputTwo.value = (currencyInputOne.value * rate).toFixed(1)
     })
 
-    fetch(`https://api.exchangerate-api.com/v4/latest/${currencyNameTwo}`)
+  fetch(`https://api.exchangerate-api.com/v4/latest/${currencyNameTwo}`)
     .then(res => res.json())
     .then(data => {
       currencyValueSingleTwo.textContent = data.rates[currencyNameOne]
@@ -187,7 +187,7 @@ changeCurrencyImg = (currencyName, img) => {
   function imgSrc(src) {
     return img.setAttribute('src', `img/currency/${src}`)
   }
-  
+
   switch (currencyName) {
     case 'USD':
       imgSrc('usd.png')
@@ -222,3 +222,70 @@ currencySelectOne.addEventListener('change', changeCurrency)
 currencySelectTwo.addEventListener('change', changeCurrency)
 currencyInputOne.addEventListener('input', changeCurrency)
 currencyInputTwo.addEventListener('input', changeCurrency)
+
+
+//============ Person filter =======================
+
+const userBtn = document.querySelector('#add-user'),
+  doubleMoneyBtn = document.querySelector('#double-money'),
+  millionaireBtn = document.querySelector('#show-millionaire'),
+  richestBtn = document.querySelector('#sort-richest'),
+  calculateWealthBtn = document.querySelector('#calculate-wealth'),
+  personMain = document.querySelector('#person-main');
+
+
+let usersArr = [];
+
+async function getUser() {
+  // Download data user
+  const res = await fetch('https://randomuser.me/api') 
+  const userData = await res.json()
+
+  const userDataName = userData.results[0]
+
+  const userDataMain = {
+    name: `${userDataName.name.first} ${userDataName.name.last}`,
+    wealth: Math.floor(Math.random() * 100000)
+  }
+
+  addUser(userDataMain)
+}
+
+// Add user in array and in HTML
+const addUser = (user) => {
+  usersArr.push(user)
+  addUserInHTML(user.name, user.wealth)
+};
+ 
+// Make new div and put datas
+const addUserInHTML = (userName, userWealth) => {
+  const div = document.createElement('div')
+  div.className = 'user-single'
+  div.innerHTML = `<p>${userName}</p> <p>${userWealth} руб.</p>`
+  personMain.append(div)
+}
+
+// Update users and add 5 new on click
+userBtn.addEventListener('click', () => {
+  usersArr = []
+  personMain.innerHTML = ''
+  for (i = 0; i < 5; i++) {
+    getUser()
+  }
+})
+
+doubleMoneyBtn.addEventListener('click', () => {
+  personMain.innerHTML = ''
+
+  const doubleArr = usersArr.map((user) => {
+    return {...user, wealth: user.wealth * 2}
+  })
+
+  doubleArr.forEach((item, i) => {
+    addUserInHTML(doubleArr[i].name, doubleArr[i].wealth)
+  })
+
+})
+
+
+
