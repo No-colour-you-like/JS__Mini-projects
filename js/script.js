@@ -324,3 +324,24 @@ calculateWealthBtn.addEventListener('click', () => {
 
 })
 
+
+//=================== Modal and menu =============================
+
+const modalHamburger = document.querySelector('#modal-hamburger'),
+  modalMenu = document.querySelector('#modal-menu'),
+  modalBlock = document.querySelector('#modal-block-container'),
+  modalBlockOpen = document.querySelector('#modal-block-open'),
+  modalBlockClose = document.querySelector('#modal-block-close');
+
+modalHamburger.addEventListener('click', () => modalMenu.classList.toggle('open-modal-menu'));
+
+modalBlockOpen.addEventListener('click', () => modalBlock.classList.add('open-modal-block'));
+
+modalBlockClose.addEventListener('click', () => modalBlock.classList.remove('open-modal-block'));
+
+window.addEventListener('click', e => {
+  if (e.target.classList.contains('modal__block-container')) {
+    modalBlock.classList.remove('open-modal-block')
+  };
+});
+  
