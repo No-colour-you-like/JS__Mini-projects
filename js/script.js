@@ -276,16 +276,51 @@ userBtn.addEventListener('click', () => {
 
 doubleMoneyBtn.addEventListener('click', () => {
   personMain.innerHTML = ''
-
-  const doubleArr = usersArr.map((user) => {
+  
+  usersArr = usersArr.map((user) => {
     return {...user, wealth: user.wealth * 2}
   })
 
-  doubleArr.forEach((item, i) => {
-    addUserInHTML(doubleArr[i].name, doubleArr[i].wealth)
+  usersArr.forEach((item, i) => {
+    addUserInHTML(usersArr[i].name, usersArr[i].wealth)
   })
 
 })
 
+// Sort by richest
+richestBtn.addEventListener('click', () => {
+  personMain.innerHTML = ''
+  usersArr = usersArr.sort((a, b) => {
+    return b.wealth - a.wealth
+  })
 
+  usersArr.forEach((item, i) => {
+    addUserInHTML(usersArr[i].name, usersArr[i].wealth)
+  })
+});
+
+// Filter more 30000
+millionaireBtn.addEventListener('click', () => {
+  personMain.innerHTML = ''
+
+  usersArr = usersArr.filter((user) => {
+    return user.wealth > 40000
+  })
+
+  usersArr.forEach((item, i) => {
+    addUserInHTML(usersArr[i].name, usersArr[i].wealth)
+  }) 
+});
+
+// Calculate all wealh 
+calculateWealthBtn.addEventListener('click', () => {
+
+  const calculateWealth = usersArr.reduce((a, b) => a + b.wealth, 0)
+  
+  const div = document.createElement('div')
+  div.className = 'users-wealth'
+  div.innerHTML = `${calculateWealth} руб.`
+  personMain.append(div)
+
+})
 
