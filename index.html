@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,11 +8,15 @@
   <title>Mini-projects</title>
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+    crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
   <main class="content">
     <section class="form-validator">
@@ -19,22 +24,22 @@
         <h1 class="validator__title">Регистрация</h1>
         <div class="validator__part">
           <label for="form-username" class="validator__name">Имя</label>
-          <input type="text" id="input-username" class="validator__input"  placeholder="Введите имя" >
+          <input type="text" id="input-username" class="validator__input" placeholder="Введите имя">
           <p class="validator__status">Ошибка</p>
         </div>
         <div class="validator__part">
           <label for="form-email" class="validator__name">Email</label>
-          <input type="text" id="input-email"  class="validator__input" placeholder="Введите ваш Email" >
+          <input type="text" id="input-email" class="validator__input" placeholder="Введите ваш Email">
           <p class="validator__status">Ошибка</p>
         </div>
         <div class="validator__part">
           <label for="form-password" class="validator__name">Пароль</label>
-          <input type="password" id="input-password" class="validator__input" placeholder="Введите пароль" >
+          <input type="password" id="input-password" class="validator__input" placeholder="Введите пароль">
           <p class="validator__status">Ошибка</p>
         </div>
         <div class="validator__part">
           <label for="form-confirm" class="validator__name" placeholder="Подтвердите пароль">Подтвердите пароль</label>
-          <input type="password" id="input-confirm"  class="validator__input" placeholder="Введите пароль" >
+          <input type="password" id="input-confirm" class="validator__input" placeholder="Введите пароль">
           <p class="validator__status">Ошибка</p>
         </div>
         <button id="validator-submit" type="submit" class="validator__btn">Отправить</button>
@@ -151,7 +156,7 @@
         <p class="movie__info">
           Вы выбрали
           <span class="movie__info-value">0</span>
-          мест на сумму 
+          мест на сумму
           <span class="movie__info-price">0</span>
           <span class="movie__info-rub">рублей</span>
         </p>
@@ -169,15 +174,15 @@
               <option value="USD">USD - Доллар США</option>
               <option value="AUD">AUD - Австралийский доллар</option>
               <option value="CHF">CHF - Франк</option>
-              <option value="EUR">EUR	- Евро</option>
-              <option value="GBP">GBP	- Фунт стерлингов</option>
+              <option value="EUR">EUR - Евро</option>
+              <option value="GBP">GBP - Фунт стерлингов</option>
             </select>
           </div>
           <div class="currency__info">
-            1 
+            1
             <span class="currency__small-name-one">0</span>
-            - 
-            <span id="small-currency-one"  class="currency__small-value">0</span>
+            -
+            <span id="small-currency-one" class="currency__small-value">0</span>
             <span class="currency__small-name-two">0</span>
           </div>
           <input id="input-one" type="number" class="currency__input">
@@ -197,14 +202,14 @@
               <option value="USD" selected>USD - Доллар США</option>
               <option value="AUD">AUD - Австралийский доллар</option>
               <option value="CHF">CHF - Франк</option>
-              <option value="EUR">EUR	- Евро</option>
-              <option value="GBP">GBP	- Фунт стерлингов</option>
+              <option value="EUR">EUR - Евро</option>
+              <option value="GBP">GBP - Фунт стерлингов</option>
             </select>
           </div>
           <div class="currency__info">
-            1 
+            1
             <span class="currency__small-name-two">0</span>
-            - 
+            -
             <span id="small-currency-two" class="currency__small-value">0</span>
             <span class="currency__small-name-one"></span>
           </div>
@@ -236,7 +241,7 @@
     <section class="modal">
       <div class="modal__container">
         <button id="modal-block-open" class="modal__button">
-            Войти
+          Войти
         </button>
         <div class="modal__menu-container">
           <div id="modal-menu" class="modal__menu">
@@ -246,7 +251,7 @@
               <div class="modal__hamburger-line"></div>
             </div>
             <div class="modal__menu-image">
-              
+
             </div>
             <div class="modal__menu-name">Главная</div>
             <div class="modal__menu-name">Новости</div>
@@ -267,8 +272,58 @@
         </div>
       </div>
     </section>
+    <section class="expense">
+      <div class="expense__wrapper">
+        <h1 class="expense__title">Счетчик затрат</h1>
+        <div class="expense__balance">
+          <h2 class="expense__balance-title">Ваш баланс</h2>
+          <p id="balance-money" class="expense__balance-money">
+            500
+          </p>
+          <p class="expense__balance-currency">руб.</p>
+        </div>
+        <div class="expense__info">
+          <div class="expense__part">
+            <p class="expense__part-title">
+              Внесено
+            </p>
+            <p id="balance-up" class="expense__part-money">500</p>
+          </div>
+          <div class="expense__part">
+            <p class="expense__part-title">
+              Потрачено
+            </p>
+            <p id="balance-down" class="expense__part-money">0</p>
+          </div>
+        </div>
+        <div class="expense__history">
+          <h2 class="expense__history-title">Все транзакции</h2>
+          <div id="transaction-list" class="expense__history-list">
+            <div class="expense__history-single">
+              <p class="expense__single-name">Пополнение</p>
+              <p class="expense__single-value">+500</p>
+            </div>
+          </div>
+        </div>
+        <div class="expense__new">
+          <h2 class="expense__new-title">Добавить транзакцию</h2>
+          <form action="#" class="expense__new-form">
+            <label for="transaction-name-input" class="expense__label">Имя транзакции</label>
+            <input id="transaction-name-input" type="text" class="expense__input" placeholder="Введите имя">
+            <label for="transaction-amount-input" class="expense__label">
+              Сумма (руб.)
+              <br>
+              <span>(Отрицательная сумма - расход, положительная - доход)</span>
+            </label>
+            <input id="transaction-amount-input" type="number" class="expense__input" placeholder="Введите сумму">
+            <button id="transaction-btn" class="expense__btn">Добавить</button>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="js/script.js"></script>
 </body>
+
 </html>

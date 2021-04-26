@@ -1,0 +1,107 @@
+.expense
+  width: 100%
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  &__wrapper
+    min-width: 500px
+    padding: 30px
+    background-color: rgba(#fff, 0.5)
+    border-radius: 5px
+    text-align: center
+  &__title
+    font-size: 30px
+    margin-bottom: 50px
+  &__balance
+    margin-bottom: 20px
+    &-title
+      font-size: 20px
+      text-transform: uppercase
+    &-money
+      display: inline-block
+      font-size: 60px
+      font-weight: 700
+    &-currency 
+      font-size: 20px
+      display: inline-block
+  &__info
+    position: relative
+    display: flex
+    justify-content: space-between
+    margin-bottom: 20px
+    border: 1px solid #fff
+    box-shadow: 0 0 20px #fff
+    &:after
+      position: absolute
+      content: ''
+      display: block
+      width: 1px
+      height: 90px
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      background-color: #ffffff
+  &__part
+    width: 50%
+    padding: 20px 30px
+    text-align: center
+    &:last-child
+      .expense__part-money
+        color: #b80000
+    &-title
+      font-size: 25px
+      margin-bottom: 10px
+    &-money
+      font-size: 30px
+      color: #00b350  
+  &__history
+    &-title
+      padding: 10px
+      border-bottom: 1px solid #b8b8b8
+    &-single
+      display: flex
+      justify-content: space-between
+      padding: 15px 20px
+      margin: 20px
+      border: 1px solid #ffffff
+      border-right: 5px solid #00b350
+      box-shadow: 0 0 10px #fff
+    &-list 
+      max-height: 200px
+      overflow-y: scroll
+  &__single
+    &-name, &-value
+      font-size: 20px
+  &__new 
+    &-title 
+      padding: 10px
+      border-bottom: 1px solid #b8b8b8
+      margin-bottom: 20px
+    &-form 
+      display: flex
+      flex-direction: column
+      align-items: center
+  &__label 
+    margin-bottom: 10px
+    span 
+      font-size: 12px
+  &__input 
+    width: 70%
+    padding: 10px 15px
+    margin-bottom: 20px
+    border: 1px solid #b8b8b8
+    border-radius: 5px
+    outline: none
+  &__btn 
+    padding: 15px 50px  
+    background-color: #b6bdff
+    color: #fff
+    border: none
+    outline: none 
+    box-shadow: 0 0 5px #b6bdff
+    font-size: 20px
+    transition: 0.5s
+    &:hover 
+      box-shadow: 0 0 20px #b6bdff
+

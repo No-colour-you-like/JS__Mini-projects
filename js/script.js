@@ -238,7 +238,7 @@ let usersArr = [];
 
 async function getUser() {
   // Download data user
-  const res = await fetch('https://randomuser.me/api') 
+  const res = await fetch('https://randomuser.me/api')
   const userData = await res.json()
 
   const userDataName = userData.results[0]
@@ -256,7 +256,7 @@ const addUser = (user) => {
   usersArr.push(user)
   addUserInHTML(user.name, user.wealth)
 };
- 
+
 // Make new div and put datas
 const addUserInHTML = (userName, userWealth) => {
   const div = document.createElement('div')
@@ -276,9 +276,12 @@ userBtn.addEventListener('click', () => {
 
 doubleMoneyBtn.addEventListener('click', () => {
   personMain.innerHTML = ''
-  
+
   usersArr = usersArr.map((user) => {
-    return {...user, wealth: user.wealth * 2}
+    return {
+      ...user,
+      wealth: user.wealth * 2
+    }
   })
 
   usersArr.forEach((item, i) => {
@@ -309,14 +312,14 @@ millionaireBtn.addEventListener('click', () => {
 
   usersArr.forEach((item, i) => {
     addUserInHTML(usersArr[i].name, usersArr[i].wealth)
-  }) 
+  })
 });
 
 // Calculate all wealh 
 calculateWealthBtn.addEventListener('click', () => {
 
   const calculateWealth = usersArr.reduce((a, b) => a + b.wealth, 0)
-  
+
   const div = document.createElement('div')
   div.className = 'users-wealth'
   div.innerHTML = `${calculateWealth} руб.`
@@ -344,4 +347,72 @@ window.addEventListener('click', e => {
     modalBlock.classList.remove('open-modal-block')
   };
 });
-  
+
+
+
+// ======================= Expense Tracker ========================
+
+const allBalance = document.querySelector('#balance-money'),
+  balanceUp = document.querySelector('#balance-up'),
+  balanceDown = document.querySelector('#balance-down'),
+  transactionList = document.querySelector('#transaction-list'),
+  transactionNameInput = document.querySelector('#transaction-name-input'),
+  transactionAmountInput = document.querySelector('#transaction-amount-input'),
+  transactionBtn = document.querySelector('#transaction-btn');
+
+
+transactionBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const nameValue = transactionNameInput.value;
+  const amountValue = parseInt(transactionAmountInput.value);
+
+  if (!nameValue == '' && !amountValue == '') {
+    transactionBtn.classList.remove('border-red');
+    singleTransaction(nameValue, amountValue);
+
+    if (amountValue >= 0) {
+      balanceUp.textContent = parseInt(balanceUp.textContent) + amountValue;
+    } else {
+      balanceDown.textContent = parseInt(balanceDown.textContent) - amountValue;
+    }
+
+
+
+    calculateAllBalance(balanceUp.textContent, balanceDown.textContent)
+
+  } else {
+    transactionBtn.classList.add('border-red');
+  }
+});
+
+
+// Make new single transaction 
+const singleTransaction = (name, amount) => {
+
+  const singleTransaction = document.createElement('div');
+  singleTransaction.classList.add('expense__history-single');
+
+  if (amount < 0) {
+    singleTransaction.classList.add('border-red-right')
+  }
+
+  singleTransaction.innerHTML = `
+    <p class="expense__single-name">${name}</p>
+    <p class="expense__single-value">${amount}</p>
+  `
+  transactionList.prepend(singleTransaction);
+}
+
+// Change all amount info 
+const calculateAllBalance = (balanceUp, balanceDown) => {
+  allBalance.innerHTML = `${balanceUp - balanceDown}`;
+
+  if (+allBalance.textContent > 0) {
+    allBalance.style.color = '#00b350'
+  } else if (+allBalance.textContent == 0) {
+    allBalance.style.color = '#b8b8b8'
+  } else {
+    allBalance.style.color = '#b80000'
+  }
+}
