@@ -22,7 +22,8 @@
       display: inline-block
       font-size: 60px
       font-weight: 700
-    &-currency 
+      color: #00b350
+    &-currency
       font-size: 20px
       display: inline-block
   &__info
@@ -54,54 +55,73 @@
       margin-bottom: 10px
     &-money
       font-size: 30px
-      color: #00b350  
+      color: #00b350
   &__history
     &-title
       padding: 10px
       border-bottom: 1px solid #b8b8b8
     &-single
+      position: relative
       display: flex
       justify-content: space-between
-      padding: 15px 20px
+      padding: 15px 30px 15px 20px
       margin: 20px
       border: 1px solid #ffffff
       border-right: 5px solid #00b350
       box-shadow: 0 0 10px #fff
-    &-list 
+      &:hover
+        .expense__single-delete
+          display: flex
+          opacity: 1
+    &-list
       max-height: 200px
       overflow-y: scroll
   &__single
     &-name, &-value
       font-size: 20px
-  &__new 
-    &-title 
+    &-delete
+      opacity: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      top: -15px
+      right: -15px
+      width: 25px
+      height: 25px
+      background-color: #ff5e5e
+      border-radius: 50%
+      font-weight: 700
+      cursor: pointer
+      transition-duration: 0.5s
+  &__new
+    &-title
       padding: 10px
       border-bottom: 1px solid #b8b8b8
       margin-bottom: 20px
-    &-form 
+    &-form
       display: flex
       flex-direction: column
       align-items: center
-  &__label 
+  &__label
     margin-bottom: 10px
-    span 
+    span
       font-size: 12px
-  &__input 
+  &__input
     width: 70%
     padding: 10px 15px
     margin-bottom: 20px
     border: 1px solid #b8b8b8
     border-radius: 5px
     outline: none
-  &__btn 
-    padding: 15px 50px  
+  &__btn
+    padding: 15px 50px
     background-color: #b6bdff
     color: #fff
     border: none
-    outline: none 
+    outline: none
     box-shadow: 0 0 5px #b6bdff
     font-size: 20px
     transition: 0.5s
-    &:hover 
+    &:hover
       box-shadow: 0 0 20px #b6bdff
-

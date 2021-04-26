@@ -554,6 +554,7 @@ section {
   display: inline-block;
   font-size: 60px;
   font-weight: 700;
+  color: #00b350;
 }
 
 .expense__balance-currency {
@@ -608,13 +609,19 @@ section {
 }
 
 .expense__history-single {
+  position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 15px 30px 15px 20px;
   margin: 20px;
   border: 1px solid #ffffff;
   border-right: 5px solid #00b350;
   box-shadow: 0 0 10px #fff;
+}
+
+.expense__history-single:hover .expense__single-delete {
+  display: flex;
+  opacity: 1;
 }
 
 .expense__history-list {
@@ -624,6 +631,23 @@ section {
 
 .expense__single-name, .expense__single-value {
   font-size: 20px;
+}
+
+.expense__single-delete {
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 25px;
+  height: 25px;
+  background-color: #ff5e5e;
+  border-radius: 50%;
+  font-weight: 700;
+  cursor: pointer;
+  transition-duration: 0.5s;
 }
 
 .expense__new-title {

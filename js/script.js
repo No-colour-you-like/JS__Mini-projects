@@ -358,9 +358,10 @@ const allBalance = document.querySelector('#balance-money'),
   transactionList = document.querySelector('#transaction-list'),
   transactionNameInput = document.querySelector('#transaction-name-input'),
   transactionAmountInput = document.querySelector('#transaction-amount-input'),
-  transactionBtn = document.querySelector('#transaction-btn');
+  transactionBtn = document.querySelector('#transaction-btn'),
+  transactionDeleteBtn = document.querySelectorAll('.expense__single-delete');
 
-
+// Add new transaction
 transactionBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -375,21 +376,38 @@ transactionBtn.addEventListener('click', (e) => {
       balanceUp.textContent = parseInt(balanceUp.textContent) + amountValue;
     } else {
       balanceDown.textContent = parseInt(balanceDown.textContent) - amountValue;
-    }
+    };
 
-
-
-    calculateAllBalance(balanceUp.textContent, balanceDown.textContent)
-
+    calculateAllBalance(balanceUp.textContent, balanceDown.textContent);
+    mainBalanceColor();
   } else {
     transactionBtn.classList.add('border-red');
   }
 });
 
+// Delete transaction
+transactionList.addEventListener('click', function (e) {
+  const singleTransaction = e.target.parentElement;
+  let singleTransactionValue = +singleTransaction.querySelector('.expense__single-value').textContent;
+
+  if (e.target.classList.contains('expense__single-delete')) {
+    singleTransaction.remove()
+
+    allBalance.textContent = +allBalance.textContent - singleTransactionValue
+
+    if (singleTransactionValue >= 0) {
+      balanceUp.textContent = +balanceUp.textContent - singleTransactionValue
+    } else {
+      balanceDown.textContent = +balanceDown.textContent + singleTransactionValue
+    };
+
+    mainBalanceColor();
+  };
+});
+
 
 // Make new single transaction 
 const singleTransaction = (name, amount) => {
-
   const singleTransaction = document.createElement('div');
   singleTransaction.classList.add('expense__history-single');
 
@@ -400,14 +418,19 @@ const singleTransaction = (name, amount) => {
   singleTransaction.innerHTML = `
     <p class="expense__single-name">${name}</p>
     <p class="expense__single-value">${amount}</p>
+    <div class="expense__single-delete">X</div>
   `
   transactionList.prepend(singleTransaction);
-}
+};
 
 // Change all amount info 
 const calculateAllBalance = (balanceUp, balanceDown) => {
   allBalance.innerHTML = `${balanceUp - balanceDown}`;
 
+};
+
+// Main balace color 
+const mainBalanceColor = () => {
   if (+allBalance.textContent > 0) {
     allBalance.style.color = '#00b350'
   } else if (+allBalance.textContent == 0) {
@@ -415,4 +438,4 @@ const calculateAllBalance = (balanceUp, balanceDown) => {
   } else {
     allBalance.style.color = '#b80000'
   }
-}
+};
