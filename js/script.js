@@ -439,3 +439,101 @@ const mainBalanceColor = () => {
     allBalance.style.color = '#b80000'
   }
 };
+
+
+// ============== Music player ========================
+const playerPlayBtn = document.querySelector('#player-play'),
+  playerPauseBtn = document.querySelector('#player-pause'),
+  playerNextBtn = document.querySelector('#player-next'),
+  playerPrevBtn = document.querySelector('#player-prev'),
+  playerImg = document.querySelector('#player-image'),
+  playerSoundName = document.querySelector('#player-sound-name'),
+  playerProgressBlock = document.querySelector('#player-progress'),
+  playerProgressAction = document.querySelector('#player-progress-action'),
+  playerAudio = document.querySelector('#player-audio');
+
+const musicArr = [{
+    songName: 'Pink Floyd - When You\'re In',
+    songLink: 'sound/when_you_are_in.mp3',
+    songImg: 'img/player/obscured_by_clouds.jpg'
+  },
+  {
+    songName: 'The Doors - Twentieth Century Fox',
+    songLink: 'sound/twentieth_century_fox.mp3',
+    songImg: 'img/player/the-doors.jpg'
+  },
+  {
+    songName: 'Rolling Stones - Gimme Shelter',
+    songLink: 'sound/gimme_shelter.mp3',
+    songImg: 'img/player/let-it-bleed.jpg'
+  },
+]
+
+// Autoplay audio with spin image
+const autoplayAudio = () => {
+  playerAudio.setAttribute('autoplay', '');
+  playerImg.classList.remove('player-image-pause');
+  playerImg.classList.add('player-image-spin');
+};
+
+// Change song name, song link and song image
+const cnahgeSongData = (songNumber) => {
+  playerSoundName.textContent = musicArr[songNumber].songName;
+  playerAudio.setAttribute('src', musicArr[songNumber].songLink);
+  playerImg.setAttribute('src', musicArr[songNumber].songImg);
+};
+
+
+let musicNumber = 0;
+
+// Play music and spin image on click
+playerPlayBtn.addEventListener('click', () => {
+  playerAudio.play();
+  playerProgressBlock.classList.add('player-progress-show');
+  autoplayAudio()
+});
+
+playerPauseBtn.addEventListener('click', () => {
+  playerAudio.pause();
+  playerImg.classList.add('player-image-pause')
+  playerProgressBlock.classList.remove('player-progress-show');
+});
+
+// Change song on click
+playerNextBtn.addEventListener('click', () => {
+  autoplayAudio();
+  playerProgressBlock.classList.add('player-progress-show');
+
+  if (musicNumber === (musicArr.length - 1)) {
+    musicNumber = 0;
+    cnahgeSongData(musicNumber)
+  } else {
+    musicNumber++
+    cnahgeSongData(musicNumber)
+  }
+});
+
+playerPrevBtn.addEventListener('click', () => {
+  autoplayAudio();
+  playerProgressBlock.classList.add('player-progress-show');
+
+  if (musicNumber === 0) {
+    musicNumber = musicArr.length - 1
+    cnahgeSongData(musicNumber)
+  } else {
+    musicNumber--
+    cnahgeSongData(musicNumber)
+  }
+});
+
+
+playerAudio.addEventListener('timeupdate', () => {
+  let songTime = (playerAudio.currentTime / playerAudio.duration) * 100;
+
+  playerProgressAction.style.width = `${songTime}%`;
+
+  if (songTime === 100) {
+    playerImg.classList.add('player-image-pause');
+  }
+
+});

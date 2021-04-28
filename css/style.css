@@ -521,9 +521,9 @@ section {
 }
 
 .expense {
+  display: none;
   width: 100%;
   height: 100vh;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -694,6 +694,120 @@ section {
   box-shadow: 0 0 20px #b6bdff;
 }
 
+.player {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player__wrapper {
+  position: relative;
+}
+
+.player__title {
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.player__main-block {
+  position: relative;
+  width: 530px;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 20px 20px 10px #d79ba2;
+  z-index: 5;
+}
+
+.player__progress {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  min-height: 100px;
+  padding: 15px 20px 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  transition: 0.5s;
+  z-index: 4;
+}
+
+.player__progress-bar {
+  width: 300px;
+  height: 5px;
+  margin-top: 25px;
+  background-color: #fff;
+}
+
+.player__progress-bar-action {
+  width: 50%;
+  height: 100%;
+  background-color: #ad0000;
+}
+
+.player__sound-name {
+  width: 120px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.player__image {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.player__image:before {
+  position: absolute;
+  content: '';
+  width: 25px;
+  height: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
+  border-radius: 50%;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.player__navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.player__change-btn {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.player__play-btn {
+  width: 65px;
+  height: 65px;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+@keyframes spinImagePlayer {
+  0% {
+    transform: auto;
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .validator-error-status input {
   border-color: #ff3434;
 }
@@ -749,4 +863,19 @@ section {
 
 .border-red-right {
   border-right-color: #9c0000;
+}
+
+.player-image-spin {
+  animation: spinImagePlayer;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.player-image-pause {
+  animation-play-state: paused;
+}
+
+.player-progress-show {
+  transform: translate(-50%, -90px);
 }

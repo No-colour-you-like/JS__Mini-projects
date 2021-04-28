@@ -1,50 +1,60 @@
 // Validator 
 
 .validator-error-status
-  input 
+  input
     border-color: #ff3434
-  p 
+  p
     visibility: visible
     color: #ff3434
 
 .validator-success-status
-  input 
+  input
     border-color: #00990d
-  p 
+  p
     visibility: visible
     color: #00990d
 
-
 // Common 
 
-.visibility-visible 
+.visibility-visible
   visibility: visible
-
 
 .user-single
   display: flex
   justify-content: space-between
   padding: 10px
 
-.users-wealth 
-  padding: 10px 
+.users-wealth
+  padding: 10px
   text-align: right
   font-size: 18px
   font-weight: 700
-  
-.open-modal-menu 
+
+.open-modal-menu
   transform: translateX(0)
 
-.open-modal-block 
+.open-modal-block
   display: flex
   opacity: 1
 
-
-.border-red 
+.border-red
   box-shadow: 0 0 10px #9c0000
   background-color: #9c0000
-  &:hover 
+  &:hover
     box-shadow: 0 0 20px #9c0000
 
-.border-red-right 
+.border-red-right
   border-right-color: #9c0000
+
+.player-image-spin
+  animation: spinImagePlayer
+  animation-duration: 5s
+  animation-iteration-count: infinite
+  animation-timing-function: linear 
+
+.player-image-pause
+  animation-play-state: paused
+
+.player-progress-show 
+  transform: translate(-50%, -90px) 
+  
