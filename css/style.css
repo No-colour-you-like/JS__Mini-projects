@@ -741,6 +741,7 @@ section {
   height: 5px;
   margin-top: 25px;
   background-color: #fff;
+  cursor: pointer;
 }
 
 .player__progress-bar-action {

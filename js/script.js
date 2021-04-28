@@ -526,14 +526,22 @@ playerPrevBtn.addEventListener('click', () => {
   }
 });
 
-
+// Progress line
 playerAudio.addEventListener('timeupdate', () => {
-  let songTime = (playerAudio.currentTime / playerAudio.duration) * 100;
+  let songTime = playerAudio.currentTime / playerAudio.duration * 100;
 
   playerProgressAction.style.width = `${songTime}%`;
 
   if (songTime === 100) {
     playerImg.classList.add('player-image-pause');
   }
+});
 
+// Progress line click 
+playerProgressAction.parentElement.addEventListener('click', (e) => {
+  const progressActionWrapperWidth = window.getComputedStyle(playerProgressAction.parentElement).width;
+
+  const clickProgressPoint = +((`${e.offsetX}` * 100) / parseInt(progressActionWrapperWidth)).toFixed();
+
+  playerAudio.currentTime = clickProgressPoint * playerAudio.duration / 100;
 });
