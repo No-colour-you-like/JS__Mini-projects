@@ -1,0 +1,76 @@
+.blog
+  width: 100%
+  height: 100vh
+  display: flex
+  align-items: flex-start
+  justify-content: center
+  &__wrapper
+    max-height: 700px
+    margin-top: 10%
+    padding: 30px
+    text-align: center
+    overflow-y: scroll  
+  &__title
+    margin-bottom: 50px
+  &__filter
+    margin-bottom: 30px
+    &-input
+      width: 100%
+      padding: 10px 20px
+      border: none
+      outline: none
+      box-shadow: 0 0 10px #fff
+  &__content
+    width: 600px
+  &__single
+    position: relative
+    width: 100%
+    padding: 30px
+    margin-bottom: 20px
+    background-color: rgba(#5d87aa, 0.5)
+    color: #fff
+    text-align: start
+    border-radius: 5px
+    box-shadow: 0 0 10px #5d87aa
+    &-title
+      font-size: 25px
+      margin-bottom: 20px
+    &-text
+      font-size: 14px
+    &-number
+      position: absolute
+      display: flex
+      align-items: center
+      justify-content: center
+      right: -20px
+      top: -20px
+      width: 40px
+      height: 40px
+      background-color: #fff
+      border-radius: 50%
+      font-size: 20px
+      font-weight: 700
+      color: #6e6e6e
+  &__loading
+    text-align: center
+    margin-top: 20px
+    opacity: 0
+
+.bouncing-loader
+  display: inline-block
+  min-width: 13px
+  min-height: 13px
+  background: #fff
+  margin-bottom: -5px
+  border-radius: 50%
+  animation: bouncing-loader 0.6s infinite alternate
+
+  &:first-child
+    animation-delay: 0.2s
+  &:last-child
+    animation-delay: 1s
+
+@keyframes bouncing-loader
+  0%
+    opacity: 0.1
+    transform: translate3d(0, -16px, 0)

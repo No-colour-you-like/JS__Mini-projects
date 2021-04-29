@@ -1,5 +1,6 @@
-// ==============Validation form=============
+'use strict';
 
+// ==============Validation form=============
 const form = document.querySelector('#form'),
   username = document.querySelector('#input-username'),
   email = document.querySelector('#input-email'),
@@ -68,17 +69,17 @@ submitBtn.addEventListener('click', (e) => {
   const checkValue = (input, max, min, statusEmpty) => {
 
     if (input.value.trim() === '') {
-      inputError(input)
-      changeStatusInfo(input, `${statusEmpty}`)
+      inputError(input);
+      changeStatusInfo(input, `${statusEmpty}`);
     } else if (input.value.length > max || input.value.length < min) {
-      inputError(input)
-      changeStatusInfo(input, `Количество символов должно быть от ${min} до ${max}`)
+      inputError(input);
+      changeStatusInfo(input, `Количество символов должно быть от ${min} до ${max}`);
     } else {
-      inputSuccess(input)
-      changeStatusInfo(input, 'Подтверждено')
+      inputSuccess(input);
+      changeStatusInfo(input, 'Подтверждено');
     }
 
-  }
+  };
 
   checkValue(username, 10, 4, 'Введите имя');
   checkValue(password, 15, 7, 'Введите пароль');
@@ -102,23 +103,23 @@ let moviePriceValue = +movieSelect.value;
 const resetValues = () => {
   seats.forEach(seat => {
     seat.classList.remove('seat-chose')
-  })
-  movieValue.textContent = 0
-  moviePrice.textContent = 0
+  });
+  movieValue.textContent = 0;
+  moviePrice.textContent = 0;
 };
 
 // Change movie in select 
 movieSelect.addEventListener('change', (e) => {
   moviePriceValue = +e.target.value;
-  resetValues()
+  resetValues();
 });
 
 // Change movie value and save data seat in local storage 
 const changeValue = () => {
   const chosenSeats = document.querySelectorAll('.movie__seats .seat-chose');
 
-  movieValue.textContent = chosenSeats.length
-  moviePrice.textContent = chosenSeats.length * moviePriceValue
+  movieValue.textContent = chosenSeats.length;
+  moviePrice.textContent = chosenSeats.length * moviePriceValue;
 }
 
 // Click on seat
@@ -182,7 +183,7 @@ const changeCurrency = () => {
 };
 
 // Change currency image 
-changeCurrencyImg = (currencyName, img) => {
+const changeCurrencyImg = (currencyName, img) => {
 
   function imgSrc(src) {
     return img.setAttribute('src', `img/currency/${src}`)
@@ -207,8 +208,8 @@ changeCurrencyImg = (currencyName, img) => {
     case 'GBP':
       imgSrc('united-kingdom.png')
       break
-  }
-}
+  };
+};
 
 // Change inputs 
 changeInputsBtn.addEventListener('click', () => {
@@ -544,4 +545,77 @@ playerProgressAction.parentElement.addEventListener('click', (e) => {
   const clickProgressPoint = +((`${e.offsetX}` * 100) / parseInt(progressActionWrapperWidth)).toFixed();
 
   playerAudio.currentTime = clickProgressPoint * playerAudio.duration / 100;
+});
+
+//======================= Blog ===============================
+
+const blogFilter = document.querySelector('#blog-filter'),
+  blogContent = document.querySelector('#blog-content'),
+  blogLoading = document.querySelector('#blog-loading'),
+  blogWrapper = document.querySelector('#blog-wrapper');
+
+let maxPosts = 3;
+let page = 1;
+
+// Get all posts from API
+const fetchPosts = async () => {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${maxPosts}&_page=${page}`);
+  const data = await res.json();
+
+  return data;
+};
+
+// Make single post
+const makePost = async () => {
+  const posts = await fetchPosts();
+
+  posts.forEach(postInfo => {
+    const post = document.createElement('div');
+    post.classList.add('blog__single');
+    post.innerHTML = `
+    <h2 class="blog__single-title">${postInfo.title}</h2>
+    <p class="blog__single-text">${postInfo.body}</p>
+    <div class="blog__single-number">${postInfo.id}</div>
+  `
+    blogContent.append(post);
+  });
+};
+
+makePost();
+
+// Show next posts after scroll 
+blogWrapper.addEventListener('scroll', () => {
+  let scrollTop = blogWrapper.scrollTop,
+    clientHeight = blogWrapper.clientHeight,
+    scrollHeight = blogWrapper.scrollHeight;
+
+  if (scrollTop + clientHeight >= scrollHeight) {
+    blogLoading.classList.add('blog-loading-show');
+
+    setTimeout(() => {
+      blogLoading.classList.remove('blog-loading-show');
+    }, 1000);
+
+    setTimeout(() => {
+      page++;
+      makePost();
+    }, 1100);
+  };
+});
+
+// Search posts by filter 
+blogFilter.addEventListener('input', () => {
+  const posts = document.querySelectorAll('.blog__single');
+  const filterValue = blogFilter.value;
+
+  posts.forEach(post => {
+    const postTitleText = post.querySelector('h2').innerText;
+    const postInfoText = post.querySelector('p').innerText;
+
+    if (postTitleText.indexOf(filterValue) > -1 || postInfoText.indexOf(filterValue) > -1) {
+      post.style.display = 'block'
+    } else {
+      post.style.display = 'none'
+    };
+  });
 });

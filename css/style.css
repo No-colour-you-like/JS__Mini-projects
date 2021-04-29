@@ -695,9 +695,9 @@ section {
 }
 
 .player {
+  display: none;
   width: 100%;
   height: 100vh;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -809,6 +809,110 @@ section {
   }
 }
 
+.blog {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.blog__wrapper {
+  max-height: 700px;
+  margin-top: 10%;
+  padding: 30px;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.blog__title {
+  margin-bottom: 50px;
+}
+
+.blog__filter {
+  margin-bottom: 30px;
+}
+
+.blog__filter-input {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  box-shadow: 0 0 10px #fff;
+}
+
+.blog__content {
+  width: 600px;
+}
+
+.blog__single {
+  position: relative;
+  width: 100%;
+  padding: 30px;
+  margin-bottom: 20px;
+  background-color: rgba(93, 135, 170, 0.5);
+  color: #fff;
+  text-align: start;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #5d87aa;
+}
+
+.blog__single-title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.blog__single-text {
+  font-size: 14px;
+}
+
+.blog__single-number {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -20px;
+  top: -20px;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 700;
+  color: #6e6e6e;
+}
+
+.blog__loading {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+}
+
+.bouncing-loader {
+  display: inline-block;
+  min-width: 13px;
+  min-height: 13px;
+  background: #fff;
+  margin-bottom: -5px;
+  border-radius: 50%;
+  animation: bouncing-loader 0.6s infinite alternate;
+}
+
+.bouncing-loader:first-child {
+  animation-delay: 0.2s;
+}
+
+.bouncing-loader:last-child {
+  animation-delay: 1s;
+}
+
+@keyframes bouncing-loader {
+  0% {
+    opacity: 0.1;
+    transform: translate3d(0, -16px, 0);
+  }
+}
+
 .validator-error-status input {
   border-color: #ff3434;
 }
@@ -879,4 +983,12 @@ section {
 
 .player-progress-show {
   transform: translate(-50%, -90px);
+}
+
+.blog-loading-show {
+  opacity: 1;
+}
+
+.blog-single-hide {
+  display: none;
 }
