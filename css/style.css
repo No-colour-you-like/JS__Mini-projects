@@ -959,14 +959,16 @@ section {
 .cards__content {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100%;
-  padding: 10px;
   min-height: 300px;
   margin-bottom: 20px;
 }
 
 .cards__content-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
   overflow: hidden;
 }
 
@@ -1154,4 +1156,8 @@ section {
 
 .cards-modal-close {
   display: none;
+}
+
+.cards-left-animation {
+  transform: translateX(-100px);
 }

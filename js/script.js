@@ -630,12 +630,10 @@ const cardsClearBtn = document.querySelector('#cards-clear-btn'),
   cardsAmount = document.querySelector('#cards-amount-info'),
   cardsModal = document.querySelector('#cards-modal'),
   cardsModalAddBtn = document.querySelector('#cards-modal-add'),
-  cardsModalCloseBtn = document.querySelector('#cards-modal-close'),
-  card = document.querySelector('.cards__card'),
-  cardQuestion = card.querySelector('.cards__card-question');
+  cardsModalCloseBtn = document.querySelector('#cards-modal-close');
 
 const cardInfoArr = [];
-let currentCard = 0;
+let activeCard = 0;
 
 // Open modal 
 cardsAddBtn.addEventListener('click', () => {
@@ -655,24 +653,52 @@ cardsModalAddBtn.addEventListener('click', (e) => {
   const answerInputValue = cardsModalAddBtn.parentElement.querySelector('#cards-answer-input').value;
 
   if (questionInputValue != '' && answerInputValue != '') {
-    cardInfoArr.push({
+    cardInfoArr.unshift({
       question: `${questionInputValue}`,
       answer: `${answerInputValue}`
     })
-    cardsModal.classList.remove('cards-modal-show');
 
-    cardQuestion.textContent = cardInfoArr[currentCard].question;
-    currentCard++
+    addCard(questionInputValue, answerInputValue)
+    activeCard()
+    cardsModal.classList.remove('cards-modal-show');
   };
 });
+
+//Add new card 
+const addCard = (cardQuestion, cardAnswer) => {
+  const card = document.createElement('div');
+
+  card.classList.add('cards__card');
+  card.innerHTML = `
+    <p class="cards__card-question">${cardQuestion}</p>
+    <p class="cards__card-answer">${cardAnswer}</p>
+  `
+  cardsContent.prepend(card)
+};
+
+// Add active card 
+const activeCard = () => {
+  const singleCard = cardsContent.querySelectorAll('.cards__card');
+
+  singleCard.forEach(card => {
+    card.classList.remove('acive-card')
+  });
+
+  singleCard[0].classList.add('acive-card');
+};
 
 // Slide cards
 cardsNextBtn.addEventListener('click', () => {
 
-  
+  const cardWidth = getComputedStyle(cardsContent).width;
+
+
+  cardsContent.style.transform = `translate(-${cardWidth})`
+
 });
 
 cardsPrevBtn.addEventListener('click', () => {
+
 
 
 });
