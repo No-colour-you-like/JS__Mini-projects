@@ -370,6 +370,57 @@
         </div>
       </div>
     </section>
+    <section class="cards">
+      <div class="cards__container">
+        <h1 class="cards__title">Карточки</h1>
+        <div class="cards__btns">
+          <button id="cards-clear-btn" class="cards__clear-btn">
+            <img src="img/cards/box.svg" alt="cards-icon" class="cards__icon-img">
+            Очистить карточки
+          </button>
+          <button id="cards-add-btn" class="cards__add-btn">
+            <img src="img/cards/pencil.svg" alt="cards-icon" class="cards__icon-img">
+            Добавить карточку
+          </button>
+        </div>
+        <div class="cards__content-wrapper">
+          <div id="cards-content" class="cards__content">
+            <div class="cards__card">
+              <p class="cards__card-question"></p>
+              <p class="cards__card-answer"></p>
+            </div>
+          </div>
+        </div>
+        <div class="cards__slide">
+          <div id="cards-prev-btn" class="cards__slide-arrow">
+            <img src="img/cards/left-arrow.svg" alt="cards-icon" class="cards__icon-arrow">
+          </div>
+          <div id="cards-amount-info" class="cards__amount">
+            <div class="cards__amount-active">1</div>
+            <div class="cards__amount-divide">/</div>
+            <div class="cards__amount-all">5</div>
+          </div>
+          <div id="cards-next-btn" class="cards__slide-arrow">
+            <img src="img/cards/right-arrow.svg" alt="cards-icon" class="cards__icon-arrow">
+          </div>
+        </div>
+        <div id="cards-modal" class="cards__modal">
+          <div class="cards__modal-container">
+            <h2 class="cards__modal-title">Добавить новую карточку</h2>
+            <form class="cards__modal-form">
+              <label for="card-name" class="cards__modal-name">Вопрос</label>
+              <input id="cards-question-input" type="text" class="cards__modal-input" placeholder="Введите вопрос"
+                required>
+              <label for="card-name" class="cards__modal-name">Ответ</label>
+              <input id="cards-answer-input" type="text" class="cards__modal-input" placeholder="Введите ответ"
+                required>
+              <button id="cards-modal-add" class="cards__modal-btn">Добавить</button>
+            </form>
+            <div id="cards-modal-close" class="cards__modal-close">X</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="js/script.js"></script>

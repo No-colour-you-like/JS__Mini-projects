@@ -619,3 +619,60 @@ blogFilter.addEventListener('input', () => {
     };
   });
 });
+
+// ========================== Cards ===============================
+
+const cardsClearBtn = document.querySelector('#cards-clear-btn'),
+  cardsAddBtn = document.querySelector('#cards-add-btn'),
+  cardsContent = document.querySelector('#cards-content'),
+  cardsPrevBtn = document.querySelector('#cards-prev-btn'),
+  cardsNextBtn = document.querySelector('#cards-next-btn'),
+  cardsAmount = document.querySelector('#cards-amount-info'),
+  cardsModal = document.querySelector('#cards-modal'),
+  cardsModalAddBtn = document.querySelector('#cards-modal-add'),
+  cardsModalCloseBtn = document.querySelector('#cards-modal-close'),
+  card = document.querySelector('.cards__card'),
+  cardQuestion = card.querySelector('.cards__card-question');
+
+const cardInfoArr = [];
+let currentCard = 0;
+
+// Open modal 
+cardsAddBtn.addEventListener('click', () => {
+  cardsModal.classList.add('cards-modal-show');
+});
+
+cardsModalCloseBtn.addEventListener('click', () => {
+  cardsModal.classList.remove('cards-modal-show');
+});
+
+
+// Add new card info 
+cardsModalAddBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  const questionInputValue = cardsModalAddBtn.parentElement.querySelector('#cards-question-input').value;
+  const answerInputValue = cardsModalAddBtn.parentElement.querySelector('#cards-answer-input').value;
+
+  if (questionInputValue != '' && answerInputValue != '') {
+    cardInfoArr.push({
+      question: `${questionInputValue}`,
+      answer: `${answerInputValue}`
+    })
+    cardsModal.classList.remove('cards-modal-show');
+
+    cardQuestion.textContent = cardInfoArr[currentCard].question;
+    currentCard++
+  };
+});
+
+// Slide cards
+cardsNextBtn.addEventListener('click', () => {
+
+  
+});
+
+cardsPrevBtn.addEventListener('click', () => {
+
+
+});

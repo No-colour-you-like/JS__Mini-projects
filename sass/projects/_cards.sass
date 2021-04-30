@@ -1,0 +1,111 @@
+.cards
+  width: 100%
+  height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+  &__container
+    position: relative
+    width: 550px
+    padding: 30px
+    text-align: center
+    background-color: rgba(#fff, 0.5)
+  &__title
+    margin-bottom: 30px
+  &__btns
+    display: flex
+    align-items: center
+    justify-content: space-between
+    margin-bottom: 20px
+  &__clear-btn, &__add-btn
+    display: flex
+    align-items: center
+    justify-content: space-between
+    width: 210px
+    padding: 5px 20px
+    font-size: 14px
+    border: 1px solid #c0c0c0
+  &__icon-img
+    width: 20px
+    height: 20px
+  &__content
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    width: 100%
+    padding: 10px
+    min-height: 300px
+    margin-bottom: 20px
+    &-wrapper 
+      overflow: hidden
+  &__card
+    display: flex
+    align-items: center
+    justify-content: center
+    min-width: 100%
+    min-height: 300px
+    padding: 30px
+    font-size: 25px
+    box-shadow: 0 0 10px #ffffff
+    &-question, &-answer
+      font-size: 25px
+      word-break: break-all 
+    &-answer 
+      display: none
+  &__slide
+    display: flex
+    align-items: center
+    justify-content: center
+    &-arrow
+      width: 40px
+      height: 40px
+      cursor: pointer
+  &__amount
+    display: flex
+    align-items: center
+    margin: 0 20px
+    font-size: 20px
+  &__modal 
+    position: absolute
+    display: none
+    align-items: center
+    justify-content: center
+    width: 100% 
+    height: 100%
+    top: 0
+    left: 0 
+    background-color: rgba(#444444, 0.5)
+    &-title 
+      margin-bottom: 20px
+    &-form 
+      display: flex
+      flex-direction: column
+      text-align: left
+    &-name
+      margin-bottom: 5px
+    &-input 
+      margin-bottom: 15px 
+      padding: 10px
+    &-btn 
+      width: 200px  
+      padding: 5px 10px
+      margin: 0 auto
+      border: none
+      border-radius: 5px
+    &-close 
+      position: absolute
+      display: flex
+      align-items: center
+      justify-content: center
+      top: 10px
+      right: 10px
+      width: 30px 
+      height: 30px 
+      background-color: #ff9494
+      border-radius: 50%
+      box-shadow: 0 0 5px #ff9494
+      cursor: pointer
+      transition: 0.2s
+      &:hover 
+        box-shadow: 0 0 15px #ff9494
+      
