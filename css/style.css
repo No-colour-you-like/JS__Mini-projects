@@ -928,6 +928,7 @@ section {
   padding: 30px;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
 }
 
 .cards__title {
@@ -957,6 +958,7 @@ section {
 }
 
 .cards__content {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -969,10 +971,10 @@ section {
   display: flex;
   align-items: center;
   padding: 10px;
-  overflow: hidden;
 }
 
 .cards__card {
+  opacity: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -981,6 +983,8 @@ section {
   padding: 30px;
   font-size: 25px;
   box-shadow: 0 0 10px #ffffff;
+  cursor: pointer;
+  transition: 0.5s;
 }
 
 .cards__card-question, .cards__card-answer {
@@ -1070,6 +1074,15 @@ section {
   box-shadow: 0 0 15px #ff9494;
 }
 
+@keyframes modalShow {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .validator-error-status input {
   border-color: #ff3434;
 }
@@ -1152,12 +1165,38 @@ section {
 
 .cards-modal-show {
   display: flex;
+  animation: modalShow;
+  animation-duration: 1s;
+  z-index: 10;
 }
 
 .cards-modal-close {
   display: none;
 }
 
-.cards-left-animation {
-  transform: translateX(-100px);
+.card-active {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  transition: 0.7s;
+  z-index: 10;
+}
+
+.card-left {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: 0.3s;
+}
+
+.card-right {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: 0.3s;
+}
+
+.card-flip {
+  transform: translateX(0) rotateX(180deg);
+  transition: 1s;
 }

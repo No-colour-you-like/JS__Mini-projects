@@ -66,9 +66,33 @@
 
 .cards-modal-show
   display: flex
+  animation: modalShow
+  animation-duration: 1s
+  z-index: 10
 
-.cards-modal-close 
+.cards-modal-close
   display: none
 
-.cards-left-animation 
-  transform: translateX(-100px)
+
+.card-active
+  opacity: 1
+  position: absolute
+  top: 0
+  left: 0
+  transform: translateX(0)
+  transition: 0.7s
+  z-index: 10
+
+.card-left
+  opacity: 0
+  transform: translateX(-100%)
+  transition: 0.3s
+
+.card-right
+  opacity: 0
+  transform: translateX(100%)
+  transition: 0.3s
+
+.card-flip
+  transform: translateX(0) rotateX(180deg)
+  transition: 1s

@@ -632,10 +632,25 @@ const cardsClearBtn = document.querySelector('#cards-clear-btn'),
   cardsModalAddBtn = document.querySelector('#cards-modal-add'),
   cardsModalCloseBtn = document.querySelector('#cards-modal-close');
 
-const cardInfoArr = [];
-let activeCard = 0;
 
-// Open modal 
+let allCardsArr = [];
+let currentCard = 0;
+let cards;
+
+//Create cards 
+const createCard = () => {
+  allCardsArr.forEach((info, i) => {
+    createCards(info, i);
+  });
+};
+
+//Add card info 
+const updateCardsCounter = () => {
+  cardsAmount.innerText = `${currentCard + 1}/${allCardsArr.length}`
+};
+
+
+//Open modal 
 cardsAddBtn.addEventListener('click', () => {
   cardsModal.classList.add('cards-modal-show');
 });
@@ -645,60 +660,85 @@ cardsModalCloseBtn.addEventListener('click', () => {
 });
 
 
-// Add new card info 
+//
 cardsModalAddBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
-  const questionInputValue = cardsModalAddBtn.parentElement.querySelector('#cards-question-input').value;
-  const answerInputValue = cardsModalAddBtn.parentElement.querySelector('#cards-answer-input').value;
+  const cardQuestionInput = document.querySelector('#cards-question-input').value;
+  const cardAnswerInput = document.querySelector('#cards-answer-input').value;
 
-  if (questionInputValue != '' && answerInputValue != '') {
-    cardInfoArr.unshift({
-      question: `${questionInputValue}`,
-      answer: `${answerInputValue}`
-    })
+  const cardInfo = {
+    question: `${cardQuestionInput}`,
+    answer: `${cardAnswerInput}`,
+  }
 
-    addCard(questionInputValue, answerInputValue)
-    activeCard()
-    cardsModal.classList.remove('cards-modal-show');
-  };
+  createCards(cardInfo, currentCard)
+
+  cards = cardsContent.querySelectorAll('.cards__card');
+
+  cards[0].classList.add('card-active')
+
 });
 
-//Add new card 
-const addCard = (cardQuestion, cardAnswer) => {
+const createCards = (info, i) => {
   const card = document.createElement('div');
-
   card.classList.add('cards__card');
+
   card.innerHTML = `
-    <p class="cards__card-question">${cardQuestion}</p>
-    <p class="cards__card-answer">${cardAnswer}</p>
-  `
-  cardsContent.prepend(card)
+    <p class="cards__card-question">${info.question}</p>
+    <p class="cards__card-answer">${info.answer}</p>
+  `;
+
+  allCardsArr.push({
+    question: `${info.question}`,
+    answer: `${info.answer}`
+  })
+
+  cardsContent.append(card);
+
+  updateCardsCounter();
 };
 
-// Add active card 
-const activeCard = () => {
-  const singleCard = cardsContent.querySelectorAll('.cards__card');
 
-  singleCard.forEach(card => {
-    card.classList.remove('acive-card')
-  });
-
-  singleCard[0].classList.add('acive-card');
-};
-
-// Slide cards
 cardsNextBtn.addEventListener('click', () => {
+  cards.forEach(card => {
+    card.classList.remove('card-active')
+  })
 
-  const cardWidth = getComputedStyle(cardsContent).width;
+  cards[currentCard].classList.add('card-left')
 
+  currentCard++;
 
-  cardsContent.style.transform = `translate(-${cardWidth})`
+  if (currentCard > allCardsArr.length - 1) {
+    currentCard = allCardsArr.length - 1
+  }
 
+  cards[currentCard].className = 'cards__card card-active'
+
+  updateCardsCounter()
 });
+
 
 cardsPrevBtn.addEventListener('click', () => {
+  cards[currentCard].classList.add('card-right')
 
+  currentCard--;
 
+  if (currentCard < 0) {
+    currentCard = 0;
+  }
+
+  cards[currentCard].className = 'cards__card card-active'
+
+  updateCardsCounter();
+});
+
+cardsContent.addEventListener('click', e => {
+
+  if (e.target.classList.contains('cards__card')) {
+
+    e.target.classList.toggle('card-flip')
+
+  };
 
 });
