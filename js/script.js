@@ -678,6 +678,7 @@ cardsModalAddBtn.addEventListener('click', (e) => {
 
   cards[0].classList.add('card-active')
 
+  cardsModal.classList.remove('cards-modal-show');
 });
 
 const createCards = (info, i) => {
@@ -689,7 +690,7 @@ const createCards = (info, i) => {
     <p class="cards__card-answer">${info.answer}</p>
   `;
 
-  allCardsArr.push({
+  allCardsArr.unshift({
     question: `${info.question}`,
     answer: `${info.answer}`
   })
@@ -699,46 +700,56 @@ const createCards = (info, i) => {
   updateCardsCounter();
 };
 
-
+// Slide cards
 cardsNextBtn.addEventListener('click', () => {
-  cards.forEach(card => {
-    card.classList.remove('card-active')
-  })
+  if (allCardsArr != '') {
+    cards[currentCard].classList.remove('card-active');
+    cards[currentCard].classList.add('card-left');
 
-  cards[currentCard].classList.add('card-left')
+    currentCard++;
 
-  currentCard++;
+    if (currentCard > allCardsArr.length - 1) {
+      currentCard = allCardsArr.length - 1
+    };
 
-  if (currentCard > allCardsArr.length - 1) {
-    currentCard = allCardsArr.length - 1
+    cards[currentCard].className = 'cards__card card-active';
+
+    updateCardsCounter();
   }
-
-  cards[currentCard].className = 'cards__card card-active'
-
-  updateCardsCounter()
 });
 
 
 cardsPrevBtn.addEventListener('click', () => {
-  cards[currentCard].classList.add('card-right')
-
-  currentCard--;
-
-  if (currentCard < 0) {
-    currentCard = 0;
-  }
-
-  cards[currentCard].className = 'cards__card card-active'
-
-  updateCardsCounter();
+  if (allCardsArr != '') {
+    cards[currentCard].classList.remove('card-active');
+    cards[currentCard].classList.add('card-right');
+    
+    currentCard--;
+  
+    if (currentCard < 0) {
+      currentCard = 0;
+    }
+  
+    cards[currentCard].className = 'cards__card card-active';
+  
+    updateCardsCounter();
+  };
 });
 
+//Flip card on click
 cardsContent.addEventListener('click', e => {
-
   if (e.target.classList.contains('cards__card')) {
-
-    e.target.classList.toggle('card-flip')
-
+    e.target.classList.toggle('card-flip');
+    e.target.querySelector('.cards__card-question').classList.toggle('card-question-toggle');
+    e.target.querySelector('.cards__card-answer').classList.toggle('card-answer-toggle');
   };
+});
 
+
+//Clear cards 
+cardsClearBtn.addEventListener('click', () => {
+  allCardsArr = [];
+  cardsContent.innerHTML = '';
+  currentCard = 0;
+  cardsAmount.innerText = '0/0';
 });
