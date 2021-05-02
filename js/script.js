@@ -745,7 +745,6 @@ cardsContent.addEventListener('click', e => {
   };
 });
 
-
 //Clear cards 
 cardsClearBtn.addEventListener('click', () => {
   allCardsArr = [];
@@ -753,3 +752,64 @@ cardsClearBtn.addEventListener('click', () => {
   currentCard = 0;
   cardsAmount.innerText = '0/0';
 });
+
+
+//========================= Pig-game ===============
+
+const pigPlayerOne = document.querySelector('#pig-player-one'),
+  pigPlayerTwo = document.querySelector('#pig-player-two'),
+  pigPlayerOneCurrent = document.querySelector('#pig-player-one-current'),
+  pigPlayerTwoCurrent = document.querySelector('#pig-player-two-current'),
+  pigNewGame = document.querySelector('#pig-new-game'),
+  diceImg = document.querySelector('#dice-img'),
+  diceRoll = document.querySelector('#dice-roll'),
+  diceHold = document.querySelector('#dice-hold'),
+  playerOneScore = pigPlayerOne.querySelector('.pig-game__player-score'),
+  playerTwoScore = pigPlayerTwo.querySelector('.pig-game__player-score');
+
+let currentScore = 0;
+let currentPlayer = 0;
+
+diceRoll.addEventListener('click', () => {
+
+  const diceNumber = Math.trunc(Math.random() * 6) + 1
+  
+  if (diceNumber === 1) {
+    currentPlayer = 0;
+  } else {
+    currentPlayer = 1;
+  }
+
+  const changeCurrentScore = () => currentScore += diceNumber;
+
+  diceImg.setAttribute('src', `img/pig-game/dice-${diceNumber}.png`)
+
+  if (currentPlayer === 0) {
+    playerOneScore.textContent = diceNumber;
+    changeCurrentScore()
+    pigPlayerOneCurrent.textContent = currentScore;
+  } else {
+    playerTwoScore.textContent = diceNumber;
+    changeCurrentScore()
+    pigPlayerTwoCurrent.textContent = currentScore;
+  }
+});
+
+diceHold.addEventListener('click', () => {
+  
+
+  if (currentPlayer === 0) {
+    playerOneScore.textContent = 0;
+    currentPlayer = 1
+    activePlayerBg()
+  } else {
+    playerTwoScore.textContent = 0;
+    currentPlayer = 0
+    activePlayerBg()
+  }  
+});
+
+const activePlayerBg = () => {
+  pigPlayerTwo.classList.toggle('active-player-bg')
+  pigPlayerOne.classList.toggle('active-player-bg')
+};

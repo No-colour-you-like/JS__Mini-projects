@@ -915,9 +915,9 @@ section {
 }
 
 .cards {
+  display: none;
   width: 100%;
   height: 100vh;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -1090,6 +1090,103 @@ section {
   }
 }
 
+.pig-game {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pig-game__wrapper {
+  position: relative;
+  display: flex;
+  width: 500px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.pig-game__player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding: 90px 30px;
+  background-color: #cacaca;
+}
+
+.pig-game__player-1 {
+  padding-right: 70px;
+}
+
+.pig-game__player-2 {
+  padding-left: 70px;
+}
+
+.pig-game__player-title {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.pig-game__player-score {
+  font-size: 30px;
+}
+
+.pig-game__player-current {
+  padding: 10px;
+  text-align: center;
+  margin-top: auto;
+  background-color: #fff;
+}
+
+.pig-game__active {
+  background-color: #e9e9e9;
+}
+
+.pig-game__current-title {
+  margin-bottom: 10px;
+}
+
+.pig-game__current-value {
+  font-size: 20px;
+}
+
+.pig-game__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  padding: 30px 0;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+
+.pig-game__new {
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+.pig-game__dice {
+  width: 60px;
+  height: 60px;
+  background-color: #fff;
+}
+
+.pig-game__roll-dice {
+  margin-top: auto;
+  margin-bottom: 30px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.pig-game__hold {
+  background-color: #fff;
+}
+
 .validator-error-status input {
   border-color: #ff3434;
 }
@@ -1222,5 +1319,9 @@ section {
   transform: rotateX(180deg);
   animation: modalShow;
   animation-duration: 2s;
+}
+
+.active-player-bg {
+  background-color: #f18d8d;
 }
 /*# sourceMappingURL=style.css.map */
