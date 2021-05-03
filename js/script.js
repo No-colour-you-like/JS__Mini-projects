@@ -767,49 +767,64 @@ const pigPlayerOne = document.querySelector('#pig-player-one'),
   playerOneScore = pigPlayerOne.querySelector('.pig-game__player-score'),
   playerTwoScore = pigPlayerTwo.querySelector('.pig-game__player-score');
 
-let currentScore = 0;
-let currentPlayer = 0;
 
-diceRoll.addEventListener('click', () => {
 
-  const diceNumber = Math.trunc(Math.random() * 6) + 1
-  
-  if (diceNumber === 1) {
-    currentPlayer = 0;
-  } else {
-    currentPlayer = 1;
-  }
+  let currentScore;
+  let currentPlayer;
+  let scores = [0, 0];
 
-  const changeCurrentScore = () => currentScore += diceNumber;
+const pigReset = () => {
+  currentScore = 0;
+  currentPlayer = 0;
+  scores = [0, 0];
 
-  diceImg.setAttribute('src', `img/pig-game/dice-${diceNumber}.png`)
+  playerOneScore.textContent = 0;
+  playerTwoScore.textContent = 0;
 
+  pigPlayerOneCurrent.textContent = 0;
+  pigPlayerTwoCurrent.textContent = 0;
+};
+
+
+const changePlayer = () => {
   if (currentPlayer === 0) {
-    playerOneScore.textContent = diceNumber;
-    changeCurrentScore()
-    pigPlayerOneCurrent.textContent = currentScore;
-  } else {
-    playerTwoScore.textContent = diceNumber;
-    changeCurrentScore()
-    pigPlayerTwoCurrent.textContent = currentScore;
-  }
-});
-
-diceHold.addEventListener('click', () => {
-  
-
-  if (currentPlayer === 0) {
-    playerOneScore.textContent = 0;
     currentPlayer = 1
-    activePlayerBg()
+    playerOneScore.textContent = scores[0]
+    pigPlayerOneCurrent.textContent = 0;
   } else {
-    playerTwoScore.textContent = 0;
     currentPlayer = 0
-    activePlayerBg()
-  }  
-});
+    playerTwoScore.textContent = scores[1]
+    pigPlayerTwoCurrent.textContent = 0;
+  }
+  
+  activePlayerBg();
+};
 
 const activePlayerBg = () => {
   pigPlayerTwo.classList.toggle('active-player-bg')
   pigPlayerOne.classList.toggle('active-player-bg')
 };
+
+diceRoll.addEventListener('click', () => {
+  const diceNumber = Math.trunc(Math.random() * 6) + 1
+  const changeCurrentScore = () => currentScore += diceNumber;
+  
+  diceImg.setAttribute('src', `img/pig-game/dice-${diceNumber}.png`)
+
+  if (currentPlayer === 0) {
+    changeCurrentScore();
+    scores[0] += diceNumber;
+    pigPlayerOneCurrent.textContent = Number(pigPlayerOneCurrent.textContent) + diceNumber;
+  } else {
+    changeCurrentScore();
+    scores[1] += diceNumber;
+    pigPlayerTwoCurrent.textContent = Number(pigPlayerTwoCurrent.textContent) + diceNumber;
+  }
+
+  if (diceNumber === 1) changePlayer();
+
+})
+
+diceHold.addEventListener('click', changePlayer);
+
+pigNewGame.addEventListener('click', pigReset)
