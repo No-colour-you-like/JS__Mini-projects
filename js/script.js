@@ -723,15 +723,15 @@ cardsPrevBtn.addEventListener('click', () => {
   if (allCardsArr != '') {
     cards[currentCard].classList.remove('card-active');
     cards[currentCard].classList.add('card-right');
-    
+
     currentCard--;
-  
+
     if (currentCard < 0) {
       currentCard = 0;
     }
-  
+
     cards[currentCard].className = 'cards__card card-active';
-  
+
     updateCardsCounter();
   };
 });
@@ -767,11 +767,9 @@ const pigPlayerOne = document.querySelector('#pig-player-one'),
   playerOneScore = pigPlayerOne.querySelector('.pig-game__player-score'),
   playerTwoScore = pigPlayerTwo.querySelector('.pig-game__player-score');
 
-
-
-  let currentScore;
-  let currentPlayer;
-  let scores = [0, 0];
+let currentScore;
+let currentPlayer;
+let scores = [0, 0];
 
 const pigReset = () => {
   currentScore = 0;
@@ -796,7 +794,7 @@ const changePlayer = () => {
     playerTwoScore.textContent = scores[1]
     pigPlayerTwoCurrent.textContent = 0;
   }
-  
+
   activePlayerBg();
 };
 
@@ -808,7 +806,7 @@ const activePlayerBg = () => {
 diceRoll.addEventListener('click', () => {
   const diceNumber = Math.trunc(Math.random() * 6) + 1
   const changeCurrentScore = () => currentScore += diceNumber;
-  
+
   diceImg.setAttribute('src', `img/pig-game/dice-${diceNumber}.png`)
 
   if (currentPlayer === 0) {
@@ -828,3 +826,41 @@ diceRoll.addEventListener('click', () => {
 diceHold.addEventListener('click', changePlayer);
 
 pigNewGame.addEventListener('click', pigReset)
+
+
+// ================= Relaxer =======================
+const relaxerStart = document.querySelector('#relaxer-start'),
+  relaxerCircle = document.querySelector('#relaxer-circle'),
+  relaxerMiniCircle = document.querySelector('#relaxer-mini-circle'),
+  relaxerCircleBorder = document.querySelector('#relaxer-circle-border');
+
+const allTime = 7000,
+  holdTime = 1500,
+  breatheOut = 3000;
+
+// Start circle animation
+const startAnimation = () => {
+  changeAnimation('circle-small', 'circle-big', 'circle-border-small', 'circle-border-big', 'Глубокий вдох');
+  setTimeout(() => {
+    relaxerStart.textContent = 'Держите'
+  }, holdTime);
+  setTimeout(() => {
+    changeAnimation('circle-big', 'circle-small', 'circle-border-big', 'circle-border-small', 'Выдохните');
+  }, breatheOut);
+};
+
+
+// Change animation classes and text
+const changeAnimation = (circleOne, circleTwo, circleBorderOne, circleBorderTwo, circleText) => {
+  relaxerCircle.classList.remove(circleOne);
+  relaxerCircle.classList.add(circleTwo);
+  relaxerCircleBorder.classList.remove(circleBorderOne);
+  relaxerCircleBorder.classList.add(circleBorderTwo);
+  relaxerStart.textContent = circleText;
+};
+
+relaxerStart.addEventListener('click', () => {
+  relaxerMiniCircle.classList.add('mini-circle-animation');
+  setInterval(startAnimation, allTime);
+  startAnimation();
+});
